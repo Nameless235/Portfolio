@@ -897,9 +897,9 @@ function hexToRgb(hex){
 }
 
 function ProjThumb({p}){
-  const style={{position:'relative',height:'100%',background:`linear-gradient(135deg,${p.c1}18,${p.c2}10,var(--bg3))`}};
+  const bg=`linear-gradient(135deg,${p.c1}18,${p.c2}10,var(--bg3))`;
   return(
-    <div style={style}>
+    <div style={{position:'relative',height:'100%',background:bg}}>
       {p.mock==='video'&&<MockVideo c1={p.c1} c2={p.c2}/>}
       {p.mock==='phone'&&<MockPhone c1={p.c1} c2={p.c2}/>}
       {p.mock==='browser-copy'&&<MockBrowserCopy c1={p.c1} c2={p.c2}/>}
@@ -909,6 +909,7 @@ function ProjThumb({p}){
     </div>
   );
 }
+
 
 /* ══ PROJECTS ═══════════════════════════════════════════════════ */
 function Projects(){
