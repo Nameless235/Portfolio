@@ -359,157 +359,287 @@ const {useState,useEffect,useRef}=React;
 
 /* ══ DATA ══════════════════════════════════════════════════════ */
 const SKILLS=[
-  {name:'Video Editing',pct:92},{name:'Copywriting',pct:88},
-  {name:'HTML & CSS',pct:85},{name:'UI/UX Design',pct:80},
-  {name:'Network Eng.',pct:76},{name:'Python',pct:70},
+  {name:'Video Editing',pct:92},
+  {name:'Copywriting & Content',pct:88},
+  {name:'HTML & CSS',pct:85},
+  {name:'UI/UX Design',pct:80},
+  {name:'Python',pct:72},
+  {name:'AI Tools & Prompting',pct:85},
 ];
+
 const SERVICES=[
   {n:'01',ico:'🎬',title:'Video Editing',desc:'Produksi video profesional untuk TikTok, YouTube Shorts & Reels. Hook 3 detik pertama yang kuat, dynamic pacing, dan CTA yang efektif untuk maksimalkan retention.',tags:['CapCut','Premiere Pro','Short-form']},
-  {n:'02',ico:'✍️',title:'Copywriting',desc:'Copy promosi & ad script yang mengkonversi. Riset audiens mendalam, A/B testing framework, dan peningkatan CTR yang terukur untuk setiap kampanye.',tags:['Ad Copy','Social Media','Conversion']},
-  {n:'03',ico:'🌐',title:'Web Development',desc:'Website & landing page fungsional, estetis, dan 100% responsif. Dibangun dengan HTML, CSS, dan Python dengan fokus performa dan aksesibilitas.',tags:['HTML/CSS','Python','Performance']},
-  {n:'04',ico:'📱',title:'Social Media Mgmt',desc:'Strategi konten menyeluruh — dari content pillars, caption, jadwal posting, hingga analitik pertumbuhan organik untuk akun TikTok, Instagram, dan YouTube.',tags:['Content Strategy','Analytics','Growth']},
+  {n:'02',ico:'✍️',title:'Copywriting',desc:'Copy promosi & ad script yang mengkonversi. Riset audiens mendalam, framework AIDA, dan peningkatan CTR yang terukur untuk setiap kampanye.',tags:['Ad Copy','Social Media','Conversion']},
+  {n:'03',ico:'🌐',title:'Web Development',desc:'Website & landing page fungsional, estetis, dan 100% responsif. Dibangun dengan HTML, CSS, dan Python — fokus performa dan aksesibilitas.',tags:['HTML/CSS','Python','Performance']},
+  {n:'04',ico:'📱',title:'Social Media Mgmt',desc:'Strategi konten menyeluruh — dari content pillars, caption, jadwal posting, hingga analitik pertumbuhan organik untuk TikTok, Instagram, dan YouTube.',tags:['Content Strategy','Analytics','Growth']},
   {n:'05',ico:'🎨',title:'UI/UX Design',desc:'Desain antarmuka yang intuitif dan visual yang kuat. Dari wireframe ke prototype interaktif dengan user research dan prinsip desain modern.',tags:['Figma','Prototyping','User Research']},
-  {n:'06',ico:'🔧',title:'Network Engineering',desc:'Konfigurasi Mikrotik RouterOS, bandwidth management, monitoring jaringan, dan troubleshooting untuk infrastruktur kantor dan UMKM.',tags:['Mikrotik','RouterOS','Troubleshoot']},
+  {n:'06',ico:'🤖',title:'AI-Powered Apps',desc:'Integrasi AI ke dalam workflow dan aplikasi — Chrome extension, automasi LLM, dan prompt engineering untuk produktivitas maksimal.',tags:['Claude API','Gemini','Chrome Ext.']},
 ];
+
 const TIMELINE=[
-  {date:'2025 — Now',role:'Informatics Engineering Student',co:'Gunadarma University · Depok',desc:'Menjalani studi S1 Teknik Informatika. Fokus pada pemrograman web, Python, algoritma, dan desain UI/UX. IPK 3.40/4.00 semester pertama.'},
-  {date:'May 2023 — Now',role:'Freelance Video Editor & Creator',co:'Remote · Various Clients',desc:'Editing konten video untuk berbagai platform. Menumbuhkan akun TikTok ke 10K followers organik, total 2.1M views, dengan rata-rata engagement rate 8.4%.'},
-  {date:'Aug — Dec 2023',role:'Freelance Copywriter',co:'Remote · E-Commerce Clients',desc:'Menulis 45+ copy promosi dan mengelola kampanye media sosial. Meningkatkan CTR sebesar 25% dan performa kampanye keseluruhan 30% melalui segmentasi pasar.'},
-  {date:'Feb — Apr 2021',role:'IT Intern',co:'PT Cyberindo · Bogor',desc:'Monitoring jaringan, konfigurasi Mikrotik router untuk 10 user dengan stabilitas 100 Mbps, dan peningkatan engagement media sosial perusahaan 50%.'},
+  {date:'2025 — Now',role:'Informatics Engineering Student',co:'Universitas Gunadarma · Depok',desc:'Menjalani studi S1 Teknik Informatika semester 2. Fokus pada pemrograman web, Python, algoritma, jaringan komputer, dan desain UI/UX.'},
+  {date:'Jan 2025 — Now',role:'Tour Guide & Supervisor',co:'PT. Dauroh Travel Indonesia · Bekasi',desc:'Mendampingi jamaah perjalanan religi (umroh & haji). Manajemen grup, koordinasi logistik perjalanan, dan memastikan kenyamanan serta keselamatan peserta.'},
+  {date:'2024 — Now',role:'Fitness Content Creator',co:'Lock In Progress · TikTok',desc:'Membuat konten edukasi fitness — bulking, cutting, training programming, TDEE/NEAT — dengan tone Gen Z kasual. Fokus pada konsistensi konten dan pertumbuhan organik.'},
+  {date:'2023 — Now',role:'Freelance Developer & Creator',co:'Remote · Various Clients',desc:'Web development (HTML/CSS/Python), UI/UX design, video editing, dan copywriting untuk berbagai klien. Mengerjakan proyek dari landing page hingga aplikasi Flask.'},
 ];
+
 const PROJECTS=[
-  {cat:'YouTube Production',title:'Shorts Series: 850K Views',sub:'12-Episode Educational Series',
-   desc:'Diproduksi dan diedit dari awal — scripting, pacing, color grade, hingga caption. Hook 3 detik pertama dioptimasi per episode berdasarkan watch-time analytics.',
-   res:[{v:'850K',l:'Total Views'},{v:'78%',l:'Retention'},{v:'+2.3K',l:'Subscribers'}],
-   tags:['Premiere Pro','Hook Strategy','YouTube SEO'],cat2:'video',href:'#',mock:'video',
-   c1:'#ef4444',c2:'#f97316',featured:true},
-  {cat:'TikTok Growth',title:'@reijikurohaku Strategy',sub:'Organic Growth Campaign',
-   desc:'Strategi konten lengkap — trending audio research, hook scripting, dan algoritma targeting. Pertumbuhan 0 → 10K followers tanpa iklan berbayar dalam 90 hari.',
-   res:[{v:'10K+',l:'Followers'},{v:'2.1M',l:'Views'},{v:'8.4%',l:'Engagement'}],
-   tags:['Content Strategy','CapCut','TikTok SEO'],cat2:'social',href:'https://tiktok.com/@reijikurohaku',mock:'phone',
-   c1:'#6366f1',c2:'#ec4899',featured:false},
-  {cat:'Copywriting',title:'E-Commerce Ad Campaign',sub:'Fashion Brand — 45 Copies',
-   desc:'Copy untuk product page, carousel ads, dan email blast. Setiap copy diuji dengan framework AIDA dan disesuaikan untuk segmen audiens yang berbeda.',
-   res:[{v:'+25%',l:'CTR Lift'},{v:'+30%',l:'Campaign ROI'},{v:'45',l:'Copies'}],
-   tags:['Ad Copy','AIDA Framework','A/B Test'],cat2:'copy',href:'#',mock:'browser-copy',
-   c1:'#f59e0b',c2:'#ef4444',featured:false},
-  {cat:'Web Development',title:'PT Cyberindo Landing Page',sub:'Corporate Website Redesign',
-   desc:'Redesign total landing page perusahaan dari scratch. Mobile-first, semantic HTML, dan optimasi performa untuk skor Lighthouse tertinggi.',
-   res:[{v:'98',l:'Perf. Score'},{v:'-40%',l:'Load Time'},{v:'100%',l:'Mobile Ready'}],
-   tags:['HTML/CSS','Responsive','Lighthouse'],cat2:'web',href:'#',mock:'browser-web',
-   c1:'#22d3ee',c2:'#6366f1',featured:false},
-  {cat:'UI/UX Design',title:'FinanceMe Mobile App',sub:'Personal Finance — 24 Screens',
-   desc:'Desain komprehensif aplikasi keuangan pribadi dari user research, wireframe, hingga prototype interaktif di Figma. 3 user flow utama: dashboard, transaksi, laporan.',
-   res:[{v:'24',l:'Screens'},{v:'4.8★',l:'Usability'},{v:'3',l:'User Flows'}],
-   tags:['Figma','Mobile UI','Prototyping'],cat2:'design',href:'#',mock:'design',
+  {cat:'Web Development',title:'M GYM Cilebut',sub:'Gym Booking Website · Live on GitHub Pages',
+   desc:'Website gym booking lengkap dengan fitur jadwal personal trainer, pilihan membership, konfirmasi WhatsApp, dan PWA support. Mobile-first, deployed ke GitHub Pages.',
+   res:[{v:'PWA',l:'Ready'},{v:'100%',l:'Responsive'},{v:'Live',l:'Deployed'}],
+   tags:['HTML/CSS','GitHub Pages','WhatsApp API'],cat2:'web',
+   href:'https://nameless235.github.io/M-Gym/',mock:'browser-web',
+   c1:'#22d3ee',c2:'#6366f1',featured:true},
+  {cat:'Platform · Caregiver',title:'Jagain.id',sub:'Caregiver Marketplace Indonesia',
+   desc:'Platform marketplace perawat rumahan model Gojek/Grab — mempertemukan keluarga dengan caregiver profesional. Branding earthy/warm, tagline "Karena merawat orang tersayang adalah bentuk cinta tertinggi."',
+   res:[{v:'MVP',l:'Built'},{v:'Earthy',l:'Branding'},{v:'Flask',l:'Backend'}],
+   tags:['HTML/CSS','Python','UI/UX'],cat2:'design',
+   href:'#',mock:'design',
+   c1:'#f59e0b',c2:'#10b981',featured:false},
+  {cat:'Chrome Extension',title:'UGLab Extension',sub:'AI-Powered LMS Quiz Helper',
+   desc:'Manifest V3 Chrome extension yang otomatis menjawab kuis di LMS Gunadarma (iLab, v-class, elearning). Integrasi Claude API, Gemini, dan ChatGPT via background service worker.',
+   res:[{v:'MV3',l:'Manifest'},{v:'3',l:'AI Providers'},{v:'Live',l:'Extension'}],
+   tags:['Chrome Ext.','Claude API','JavaScript'],cat2:'web',
+   href:'#',mock:'browser-copy',
+   c1:'#6366f1',c2:'#8b5cf6',featured:false},
+  {cat:'TikTok · Fitness',title:'Lock In Progress',sub:'Fitness Content Brand',
+   desc:'Akun konten fitness di TikTok — edukasi bulking, cutting, training split, dan TDEE/NEAT dengan tone Gen Z kasual (lo/gue). Brutalist visual aesthetic: thick borders, B&W + red accent.',
+   res:[{v:'Grow',l:'Organik'},{v:'4-Day',l:'PPL Split'},{v:'Daily',l:'Content'}],
+   tags:['TikTok','Premiere Pro','Content Strategy'],cat2:'social',
+   href:'#',mock:'phone',
+   c1:'#ef4444',c2:'#1a1a1a',featured:false},
+  {cat:'Web App · Flask',title:'Vape Liquid E-Commerce',sub:'Recommendation System · Academic Research',
+   desc:'Aplikasi e-commerce Flask dengan sistem rekomendasi Collaborative Filtering + Content-Based Filtering (cosine similarity via scikit-learn). UI premium dark luxury, Jinja2 templating.',
+   res:[{v:'CF+CBF',l:'Algorithm'},{v:'Dark',l:'Luxury UI'},{v:'Flask',l:'Backend'}],
+   tags:['Flask','scikit-learn','Jinja2'],cat2:'web',
+   href:'#',mock:'browser-web',
    c1:'#8b5cf6',c2:'#ec4899',featured:false},
-  {cat:'Network Engineering',title:'Office Network Setup',sub:'PT Cyberindo — Infrastructure',
-   desc:'Konfigurasi RouterOS Mikrotik untuk manajemen bandwidth 10 endpoint, hotspot management, firewall rules, dan monitoring uptime dengan WinBox & Dude.',
-   res:[{v:'10',l:'Nodes'},{v:'100M',l:'Stable Speed'},{v:'99.9%',l:'Uptime'}],
-   tags:['Mikrotik','RouterOS','Bandwidth Mgmt'],cat2:'network',href:'#',mock:'network',
+  {cat:'Network Engineering',title:'Office Network Setup',sub:'Mikrotik RouterOS — Infrastructure',
+   desc:'Konfigurasi RouterOS Mikrotik untuk manajemen bandwidth multi-endpoint, hotspot management, firewall rules, dan monitoring uptime dengan WinBox.',
+   res:[{v:'Multi',l:'Nodes'},{v:'100M',l:'Stable Speed'},{v:'99.9%',l:'Uptime'}],
+   tags:['Mikrotik','RouterOS','Bandwidth Mgmt'],cat2:'network',
+   href:'#',mock:'network',
    c1:'#10b981',c2:'#22d3ee',featured:false},
 ];
+
 const TESTIMONIALS=[
-  {txt:'Adam sangat profesional dan responsif. Engagement akun kami meningkat drastis hanya dalam beberapa minggu. Video edit-an-nya selalu punya hook yang langsung menarik perhatian.',nm:'Rizky Pratama',role:'Marketing Manager · PT Cyberindo',init:'R'},
-  {txt:'Copy yang ditulis Adam benar-benar beda levelnya. Ia paham cara menyentuh audiens dengan kata yang tepat di waktu yang tepat. CTR kampanye kami naik signifikan.',nm:'Sari Dewi',role:'Brand Owner · Freelance Client',init:'S'},
-  {txt:'Konten video yang Adam buat viral beberapa kali. Ia paham algoritma dan cara bikin hook yang kuat. Follower akun kami tumbuh jauh lebih cepat dari ekspektasi.',nm:'Fadhil Anwar',role:'Content Creator · Freelance Client',init:'F'},
+  {txt:'Adam sangat cepat belajar dan adaptif. Proyek Chrome extension-nya yang bisa otomatis menjawab kuis pakai AI API itu genuinely impressive buat mahasiswa semester 2.',nm:'Peer Review',role:'Fellow Developer · Gunadarma',init:'P'},
+  {txt:'Konten fitness yang Adam buat informatif banget dan tone-nya relatable. Cara dia nyampein soal cutting dan training program bikin yang awam pun bisa ngerti.',nm:'Fitness Follower',role:'TikTok · Lock In Progress',init:'F'},
+  {txt:'Website gym yang Adam bikin clean dan fungsional. Sistem booking-nya straightforward, desainnya mobile-friendly, dan WhatsApp integrationnya praktis banget.',nm:'M GYM Client',role:'M GYM Cilebut · Bogor',init:'M'},
 ];
-const TECH=['🌐 HTML & CSS','🐍 Python','🎨 Canva','🎬 Premiere Pro','✂️ CapCut','🔧 Mikrotik','💻 VS Code','📊 Excel','🖥️ OBS Studio','📱 TikTok','▶️ YouTube','🎯 Figma','⚛️ React','🛜 RouterOS'];
+
+const TECH=['🌐 HTML & CSS','🐍 Python','🎨 Figma','🎬 Premiere Pro','✂️ CapCut','🤖 Claude API','💻 VS Code','⚛️ React','🧠 Gemini AI','📱 TikTok','🔧 Mikrotik','🌶️ Flask','🔌 Chrome Ext.','📊 scikit-learn'];
+
 const FAQS=[
-  {q:'Apa saja layanan yang tersedia?',a:'Video editing (TikTok, YouTube Shorts, Reels), copywriting & social media management, web development (HTML/CSS/Python), desain UI/UX (Figma), dan konfigurasi jaringan Mikrotik.'},
-  {q:'Berapa lama pengerjaan proyek video editing?',a:'Konten short-form biasanya 1–3 hari kerja. Video panjang 3–7 hari. Estimasi waktu selalu dikomunikasikan di awal proyek sebelum pengerjaan dimulai.'},
-  {q:'Apakah menerima proyek remote / luar kota?',a:'Ya, semua proyek bisa dikerjakan secara remote. Komunikasi via WhatsApp, email, atau platform freelance. File dikirim lewat Google Drive atau WeTransfer.'},
-  {q:'Tersedia untuk internship / magang?',a:'Ya, aktif mencari peluang magang di bidang UI/UX design, web development, atau content creation. Hubungi via email atau LinkedIn untuk berdiskusi lebih lanjut.'},
-  {q:'Bagaimana cara mulai bekerja sama?',a:'Kirim pesan ke adaamputra423@gmail.com atau DM di LinkedIn. Ceritakan kebutuhan proyek, lalu kita diskusikan brief, timeline, dan investasi bersama — tanpa komitmen awal.'},
+  {q:'Apa saja layanan yang tersedia?',a:'Video editing (TikTok, Shorts, Reels), copywriting & social media management, web development (HTML/CSS/Python/Flask), UI/UX design (Figma), AI-powered tools & Chrome extension, dan konfigurasi jaringan Mikrotik.'},
+  {q:'Berapa lama pengerjaan proyek web development?',a:'Landing page sederhana 2–5 hari kerja. Aplikasi Flask dengan fitur kompleks bisa 1–3 minggu. Estimasi waktu selalu dikomunikasikan di awal sebelum pengerjaan dimulai.'},
+  {q:'Apakah menerima proyek remote / luar kota?',a:'Ya, semua proyek bisa dikerjakan remote. Komunikasi via WhatsApp atau email. File dikirim lewat Google Drive atau GitHub.'},
+  {q:'Tersedia untuk internship / magang?',a:'Ya, aktif mencari peluang magang di bidang UI/UX, web development, content creation, atau AI tools. Hubungi via email atau LinkedIn.'},
+  {q:'Bagaimana cara mulai bekerja sama?',a:'Kirim pesan ke adaamputra423@gmail.com atau WhatsApp. Ceritakan kebutuhan proyek, lalu kita diskusikan scope, timeline, dan budget bersama.'},
 ];
+
 const STATS=[
-  {ico:'📈',val:50,sfx:'%',lbl:'Engagement Growth'},
-  {ico:'🖱️',val:25,sfx:'%',lbl:'CTR Increase'},
-  {ico:'🚀',val:30,sfx:'%',lbl:'Campaign Boost'},
-  {ico:'👥',val:10,sfx:'K+',lbl:'Organic Followers'},
-  {ico:'⚡',val:100,sfx:'M',lbl:'Network Speed'},
-  {ico:'🎓',val:3.4,sfx:' GPA',lbl:'Academic Score'},
+  {ico:'🏋️',val:5,sfx:'+',lbl:'Active Projects'},
+  {ico:'📱',val:4,sfx:'+',lbl:'Platforms Managed'},
+  {ico:'🤖',val:3,sfx:'',lbl:'AI APIs Integrated'},
+  {ico:'🌐',val:3,sfx:'+',lbl:'Live Websites'},
+  {ico:'🎓',val:3.4,sfx:'',lbl:'GPA Score'},
+  {ico:'☪️',val:100,sfx:'%',lbl:'Travel Satisfaction'},
 ];
-const WORDS=['Developer & Creative','Video Editor','Copywriter','UI/UX Designer','Network Engineer','Content Strategist'];
+
+const WORDS=['Developer & Creative','Video Editor','Copywriter','UI/UX Designer','Fitness Creator','AI Enthusiast'];
+
+/* ══ UTIL ══════════════════════════════════════════════════════ */
+function hexToRgb(hex){
+  if(!hex||hex.length<7)return'99,102,241';
+  const r=parseInt(hex.slice(1,3),16);
+  const g=parseInt(hex.slice(3,5),16);
+  const b=parseInt(hex.slice(5,7),16);
+  return`${r},${g},${b}`;
+}
 
 /* ══ HOOKS ═════════════════════════════════════════════════════ */
 function useScrolled(t=50){
   const[s,setS]=useState(false);
-  useEffect(()=>{const fn=()=>setS(window.scrollY>t);window.addEventListener('scroll',fn);return()=>window.removeEventListener('scroll',fn)},[t]);
+  useEffect(()=>{
+    const fn=()=>setS(window.scrollY>t);
+    window.addEventListener('scroll',fn);
+    return()=>window.removeEventListener('scroll',fn);
+  },[t]);
   return s;
 }
+
 function useVisible(ref){
   const[v,setV]=useState(false);
   useEffect(()=>{
-    const o=new IntersectionObserver(([e])=>{if(e.isIntersecting){setV(true);o.disconnect();}},{threshold:.1});
-    if(ref.current)o.observe(ref.current);return()=>o.disconnect();
+    const o=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting){setV(true);o.disconnect();}
+    },{threshold:.1});
+    if(ref.current)o.observe(ref.current);
+    return()=>o.disconnect();
   },[]);
   return v;
 }
+
 function useTyped(words,speed=90,pause=2000){
-  const[txt,setTxt]=useState('');const[wi,setWi]=useState(0);const[ci,setCi]=useState(0);const[del,setDel]=useState(false);
+  const[txt,setTxt]=useState('');
+  const[wi,setWi]=useState(0);
+  const[ci,setCi]=useState(0);
+  const[del,setDel]=useState(false);
   useEffect(()=>{
-    const w=words[wi];const delay=del?speed/2:ci===w.length?pause:speed;
+    const w=words[wi];
+    const delay=del?speed/2:ci===w.length?pause:speed;
     const t=setTimeout(()=>{
       if(!del&&ci<w.length){setTxt(w.slice(0,ci+1));setCi(c=>c+1);}
-      else if(!del&&ci===w.length)setDel(true);
+      else if(!del&&ci===w.length){setDel(true);}
       else if(del&&ci>0){setTxt(w.slice(0,ci-1));setCi(c=>c-1);}
       else{setDel(false);setWi(i=>(i+1)%words.length);}
     },delay);
     return()=>clearTimeout(t);
-  },[txt,ci,del,wi]);
+  },[txt,ci,del,wi,words,speed,pause]);
   return txt;
 }
+
 function useCounter(target,dur=2000,go=false){
   const[n,setN]=useState(0);
   useEffect(()=>{
-    if(!go)return;let st;
-    const step=ts=>{if(!st)st=ts;const p=Math.min((ts-st)/dur,1);const e=1-Math.pow(1-p,3);setN(parseFloat((e*target).toFixed(1)));if(p<1)requestAnimationFrame(step);};
+    if(!go)return;
+    let st;
+    const step=ts=>{
+      if(!st)st=ts;
+      const p=Math.min((ts-st)/dur,1);
+      const e=1-Math.pow(1-p,3);
+      setN(parseFloat((e*target).toFixed(2)));
+      if(p<1)requestAnimationFrame(step);
+    };
     requestAnimationFrame(step);
   },[go,target,dur]);
   return n;
 }
 
-/* ══ CURSOR ═════════════════════════════════════════════════════ */
+/* ══ CURSOR ═════════════════════════════════════════════════════
+   FIX: pakai event delegation di document supaya semua elemen
+   (termasuk yang render belakangan) tetap dapat hover effect.
+   FIX: cleanup semua event listener di return. ════════════════ */
 function Cursor(){
-  const dot=useRef(null),ring=useRef(null),pos=useRef({x:0,y:0}),rp=useRef({x:0,y:0});
+  const dot=useRef(null),ring=useRef(null);
+  const pos=useRef({x:0,y:0}),rp=useRef({x:0,y:0});
+
   useEffect(()=>{
-    const mv=e=>{pos.current={x:e.clientX,y:e.clientY};if(dot.current){dot.current.style.left=e.clientX+'px';dot.current.style.top=e.clientY+'px';}};
-    const over=()=>{if(ring.current)ring.current.classList.add('hov');};
-    const out=()=>{if(ring.current)ring.current.classList.remove('hov');};
+    const mv=e=>{
+      pos.current={x:e.clientX,y:e.clientY};
+      if(dot.current){
+        dot.current.style.left=e.clientX+'px';
+        dot.current.style.top=e.clientY+'px';
+      }
+    };
+    // Event delegation — menangkap hover ke semua elemen interaktif
+    const over=e=>{
+      if(e.target.closest('a,button,.proj-card,.svc-card,.st-card,.test-card')){
+        if(ring.current)ring.current.classList.add('hov');
+      }
+    };
+    const out=e=>{
+      if(e.target.closest('a,button,.proj-card,.svc-card,.st-card,.test-card')){
+        if(ring.current)ring.current.classList.remove('hov');
+      }
+    };
+
     window.addEventListener('mousemove',mv);
-    document.querySelectorAll('a,button,.proj-card,.svc-card,.st-card').forEach(el=>{el.addEventListener('mouseenter',over);el.addEventListener('mouseleave',out);});
-    let raf;const anim=()=>{rp.current.x+=(pos.current.x-rp.current.x)*.1;rp.current.y+=(pos.current.y-rp.current.y)*.1;if(ring.current){ring.current.style.left=rp.current.x+'px';ring.current.style.top=rp.current.y+'px';}raf=requestAnimationFrame(anim);};anim();
-    return()=>{window.removeEventListener('mousemove',mv);cancelAnimationFrame(raf);};
+    document.addEventListener('mouseover',over);
+    document.addEventListener('mouseout',out);
+
+    let raf;
+    const anim=()=>{
+      rp.current.x+=(pos.current.x-rp.current.x)*.1;
+      rp.current.y+=(pos.current.y-rp.current.y)*.1;
+      if(ring.current){
+        ring.current.style.left=rp.current.x+'px';
+        ring.current.style.top=rp.current.y+'px';
+      }
+      raf=requestAnimationFrame(anim);
+    };
+    anim();
+
+    return()=>{
+      window.removeEventListener('mousemove',mv);
+      document.removeEventListener('mouseover',over);
+      document.removeEventListener('mouseout',out);
+      cancelAnimationFrame(raf);
+    };
   },[]);
-  return<><div ref={dot} className="c-dot"/><div ref={ring} className="c-ring"/></>;
+
+  return(
+    <>
+      <div ref={dot} className="c-dot"/>
+      <div ref={ring} className="c-ring"/>
+    </>
+  );
 }
 
-/* ══ CANVAS ═════════════════════════════════════════════════════ */
+/* ══ CANVAS ═════════════════════════════════════════════════════
+   FIX: mousemove listener sekarang di-cleanup di return. ═══════ */
 function Canvas(){
   const ref=useRef(null);
   useEffect(()=>{
-    const c=ref.current,ctx=c.getContext('2d');let id;
-    const rz=()=>{c.width=innerWidth;c.height=innerHeight;};rz();window.addEventListener('resize',rz);
-    const pts=Array.from({length:65},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.6+.6,a:Math.random()*.45+.15}));
-    let mx=-999,my=-999;window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+    const c=ref.current,ctx=c.getContext('2d');
+    let id;
+    const rz=()=>{c.width=innerWidth;c.height=innerHeight;};
+    rz();
+    window.addEventListener('resize',rz);
+
+    const pts=Array.from({length:65},()=>({
+      x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+      vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,
+      r:Math.random()*1.6+.6,a:Math.random()*.45+.15,
+    }));
+
+    let mx=-999,my=-999;
+    // FIX: simpan referensi fungsi supaya bisa dihapus
+    const mm=e=>{mx=e.clientX;my=e.clientY;};
+    window.addEventListener('mousemove',mm);
+
     const draw=()=>{
       ctx.clearRect(0,0,c.width,c.height);
       for(let i=0;i<pts.length;i++){
         for(let j=i+1;j<pts.length;j++){
-          const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-          if(d<120){ctx.beginPath();ctx.strokeStyle=`rgba(99,102,241,${(1-d/120)*.15})`;ctx.lineWidth=1;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();}
+          const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+          const d=Math.sqrt(dx*dx+dy*dy);
+          if(d<120){
+            ctx.beginPath();
+            ctx.strokeStyle=`rgba(99,102,241,${(1-d/120)*.15})`;
+            ctx.lineWidth=1;
+            ctx.moveTo(pts[i].x,pts[i].y);
+            ctx.lineTo(pts[j].x,pts[j].y);
+            ctx.stroke();
+          }
         }
         const md=Math.sqrt((pts[i].x-mx)**2+(pts[i].y-my)**2);
-        if(md<150){ctx.beginPath();ctx.strokeStyle=`rgba(34,211,238,${(1-md/150)*.32})`;ctx.lineWidth=1;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(mx,my);ctx.stroke();}
+        if(md<150){
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(34,211,238,${(1-md/150)*.32})`;
+          ctx.lineWidth=1;
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(mx,my);
+          ctx.stroke();
+        }
         pts[i].x+=pts[i].vx;pts[i].y+=pts[i].vy;
         if(pts[i].x<0||pts[i].x>c.width)pts[i].vx*=-1;
         if(pts[i].y<0||pts[i].y>c.height)pts[i].vy*=-1;
-        ctx.beginPath();ctx.arc(pts[i].x,pts[i].y,pts[i].r,0,Math.PI*2);ctx.fillStyle=`rgba(99,102,241,${pts[i].a})`;ctx.fill();
+        ctx.beginPath();
+        ctx.arc(pts[i].x,pts[i].y,pts[i].r,0,Math.PI*2);
+        ctx.fillStyle=`rgba(99,102,241,${pts[i].a})`;
+        ctx.fill();
       }
       id=requestAnimationFrame(draw);
-    };draw();
-    return()=>{cancelAnimationFrame(id);window.removeEventListener('resize',rz);};
+    };
+    draw();
+
+    return()=>{
+      cancelAnimationFrame(id);
+      window.removeEventListener('resize',rz);
+      window.removeEventListener('mousemove',mm); // FIX: cleanup
+    };
   },[]);
   return<canvas ref={ref} id="hc"/>;
 }
@@ -524,7 +654,11 @@ function Navbar({active}){
       </a>
       <ul className="nav-links">
         {['About','Services','Timeline','Projects','Contact'].map(l=>(
-          <li key={l}><a href={`#${l.toLowerCase()}`} className={active===l.toLowerCase()?'active':''}>{l}</a></li>
+          <li key={l}>
+            <a href={`#${l.toLowerCase()}`} className={active===l.toLowerCase()?'active':''}>
+              {l}
+            </a>
+          </li>
         ))}
         <li><a href="#contact" className="nav-cta">Hire Me ✦</a></li>
       </ul>
@@ -546,13 +680,17 @@ function Hero(){
           <span className="ghost-text">MAD </span><span className="grad-text">ADAM</span>
         </h1>
         <div className="hero-role"><b>{typed}</b><span className="blink"/></div>
-        <p className="hero-desc">A passionate developer &amp; creative from Bogor — blending code, design, and storytelling to craft digital experiences that actually deliver results.</p>
+        <p className="hero-desc">
+          Mahasiswa Teknik Informatika Gunadarma semester 2, berbasis di Bekasi — 
+          menggabungkan coding, desain, dan storytelling untuk membangun produk digital 
+          yang fungsional dan berkesan.
+        </p>
         <div className="hero-actions">
           <a href="#projects" className="btn-p"><i className="fas fa-rocket"/>View My Work</a>
           <a href="#contact" className="btn-g"><i className="fas fa-paper-plane"/>Get in Touch</a>
         </div>
         <div className="hero-stats">
-          {[['3.40','GPA Score'],['50%','Engagement Growth'],['10K+','Organic Followers'],['3+','Years Freelance']].map(([n,l])=>(
+          {[['3.40','GPA Score'],['5+','Live Projects'],['3','AI APIs Used'],['2nd','Year Student']].map(([n,l])=>(
             <div key={l}><div className="hs-num">{n}</div><div className="hs-lbl">{l}</div></div>
           ))}
         </div>
@@ -575,13 +713,15 @@ function About(){
         <div className={`fi${vis?' v':''}`} style={{transitionDelay:'.18s'}}>
           <div style={{position:'relative',width:'fit-content'}}>
             <div className="profile-card">
-              <div className="profile-av"><span style={{position:'relative',zIndex:1}}>👨‍💻</span></div>
+              <div className="profile-av">
+                <span style={{position:'relative',zIndex:1}}>👨‍💻</span>
+              </div>
               <div className="profile-name">Muhammad Adam</div>
-              <div className="profile-role">Developer & Creative · Bogor, Indonesia</div>
+              <div className="profile-role">Developer & Creative · Bekasi, Indonesia</div>
               {[
-                {ico:'fa-graduation-cap',v:'Gunadarma University · 2025'},
-                {ico:'fa-briefcase',v:'3+ Years Freelance Experience'},
-                {ico:'fa-map-marker-alt',v:'Bogor, West Java — Remote OK'},
+                {ico:'fa-graduation-cap',v:'Universitas Gunadarma · Teknik Informatika'},
+                {ico:'fa-briefcase',v:'Tour Guide · PT. Dauroh Travel Indonesia'},
+                {ico:'fa-map-marker-alt',v:'Bekasi, West Java — Remote OK'},
                 {ico:'fa-language',v:'Indonesian · English'},
               ].map(d=>(
                 <div key={d.ico} className="p-detail">
@@ -590,28 +730,35 @@ function About(){
               ))}
             </div>
             <div className="fl-badge tr"><div className="fl-num">3.40</div><div className="fl-lbl">GPA · Gunadarma</div></div>
-            <div className="fl-badge bl"><div className="fl-num">3+</div><div className="fl-lbl">Years Freelance</div></div>
+            <div className="fl-badge bl"><div className="fl-num">5+</div><div className="fl-lbl">Projects Built</div></div>
           </div>
         </div>
         <div className={`fi${vis?' v':''}`} style={{transitionDelay:'.36s'}}>
           <p className="sec-desc" style={{marginBottom:'2.25rem'}}>
-            I'm a <strong style={{color:'var(--text)'}}>second-year Informatics Engineering student</strong> at Gunadarma University with a passion for both the technical and creative sides of digital work.<br/><br/>
-            From <strong style={{color:'var(--cyan)'}}>configuring Mikrotik routers</strong> to writing copy that drives measurable CTR lifts — I thrive at the intersection of engineering and storytelling.
+            Gue adalah <strong style={{color:'var(--text)'}}>mahasiswa Teknik Informatika semester 2</strong> di Universitas Gunadarma dengan passion di persimpangan antara teknologi dan kreativitas.<br/><br/>
+            Dari <strong style={{color:'var(--cyan)'}}>ngebangun Chrome extension dengan Claude API</strong>, desain platform marketplace, sampai bikin konten fitness di TikTok — gue thrive di mana coding ketemu storytelling.
           </p>
           <div className="about-right">
             <h3>Core Skills</h3>
             <div className="skills-list">
               {SKILLS.map(s=>(
                 <div key={s.name} className="sk-row">
-                  <div className="sk-top"><span className="sk-name">{s.name}</span><span className="sk-pct">{s.pct}%</span></div>
-                  <div className="sk-track"><div className="sk-fill" style={{transform:vis?`scaleX(${s.pct/100})`:'scaleX(0)'}}/></div>
+                  <div className="sk-top">
+                    <span className="sk-name">{s.name}</span>
+                    <span className="sk-pct">{s.pct}%</span>
+                  </div>
+                  <div className="sk-track">
+                    <div className="sk-fill" style={{transform:vis?`scaleX(${s.pct/100})`:'scaleX(0)'}}/>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
           <div className="about-tags">
-            {['Open Source','Remote-Ready','Quick Learner','Detail Oriented','Team Player','Self-Starter'].map(c=>(
-              <span key={c} className="a-chip"><i className="fas fa-check" style={{fontSize:'.6rem',color:'var(--emerald)'}}/>  {c}</span>
+            {['Self-Starter','Remote-Ready','Quick Learner','Detail Oriented','Open Source','AI-Curious'].map(c=>(
+              <span key={c} className="a-chip">
+                <i className="fas fa-check" style={{fontSize:'.6rem',color:'var(--emerald)'}}/>  {c}
+              </span>
             ))}
           </div>
         </div>
@@ -628,7 +775,9 @@ function Services(){
       <div className={`fi${vis?' v':''}`} style={{textAlign:'center'}}>
         <span className="sec-lbl">What I Offer</span>
         <h2 className="sec-ttl">My <span className="hl">Services</span></h2>
-        <p className="sec-desc" style={{margin:'0 auto'}}>Comprehensive solutions across creative and technical domains — built on real results.</p>
+        <p className="sec-desc" style={{margin:'0 auto'}}>
+          Solusi komprehensif di bidang kreatif dan teknis — dibangun dari pengalaman nyata.
+        </p>
       </div>
       <div className="svc-g">
         {SERVICES.map((s,i)=>(
@@ -687,17 +836,21 @@ function Timeline(){
   );
 }
 
-/* ══ STATS ══════════════════════════════════════════════════════ */
+/* ══ STATS ══════════════════════════════════════════════════════
+   FIX: pakai Number.isInteger() bukan s.val===3.4 (float comparison fragile) */
 function StatCard({s}){
   const ref=useRef(null),vis=useVisible(ref),n=useCounter(s.val,2200,vis);
+  // FIX: cek float via isInteger, bukan exact equality
+  const display=Number.isInteger(s.val)?Math.round(n):n.toFixed(1);
   return(
     <div ref={ref} className="st-card">
       <div className="st-ico">{s.ico}</div>
-      <div className="st-val">{s.val===3.4?n.toFixed(1):Math.round(n)}{s.sfx}</div>
+      <div className="st-val">{display}{s.sfx}</div>
       <div className="st-lbl">{s.lbl}</div>
     </div>
   );
 }
+
 function Stats(){
   const ref=useRef(null),vis=useVisible(ref);
   return(
@@ -733,6 +886,7 @@ function MockVideo({c1,c2}){
     </div>
   );
 }
+
 function MockPhone({c1,c2}){
   return(
     <div className="m-phone">
@@ -761,22 +915,33 @@ function MockPhone({c1,c2}){
     </div>
   );
 }
+
 function MockBrowserCopy({c1,c2}){
+  const rgb1=hexToRgb(c1),rgb2=hexToRgb(c2);
   return(
     <div className="m-browser">
       <div className="b-win">
         <div className="b-bar">
           <div className="bd bd-r"/><div className="bd bd-y"/><div className="bd bd-g"/>
-          <div className="b-url"><i className="fas fa-lock" style={{fontSize:'.42rem',marginRight:'3px'}}/>adcopy.project.io</div>
+          <div className="b-url">
+            <i className="fas fa-lock" style={{fontSize:'.42rem',marginRight:'3px'}}/>
+            uglab.extension.io
+          </div>
         </div>
         <div className="b-body">
           <div className="b-nav">
             <div className="b-logo" style={{background:c1,opacity:.8}}/>
-            <div className="b-lnks"><div className="b-lnk"/><div className="b-lnk"/><div className="b-lnk"/></div>
+            <div className="b-lnks">
+              <div className="b-lnk"/><div className="b-lnk"/><div className="b-lnk"/>
+            </div>
           </div>
           <div style={{padding:'0 2px',display:'flex',flexDirection:'column',gap:'5px'}}>
             {[80,100,65,90,55].map((w,i)=>(
-              <div key={i} style={{height:'6px',background:i%2===0?`rgba(${hexToRgb(c1)},.35)`:`rgba(${hexToRgb(c2)},.2)`,borderRadius:'3px',width:w+'%'}}/>
+              <div key={i} style={{
+                height:'6px',
+                background:i%2===0?`rgba(${rgb1},.35)`:`rgba(${rgb2},.2)`,
+                borderRadius:'3px',width:w+'%',
+              }}/>
             ))}
             <div style={{height:'16px',background:`${c1}80`,borderRadius:'5px',width:'38%',marginTop:'4px',display:'flex',alignItems:'center',justifyContent:'center'}}>
               <div style={{height:'5px',width:'50px',background:'rgba(255,255,255,.5)',borderRadius:'2px'}}/>
@@ -787,36 +952,48 @@ function MockBrowserCopy({c1,c2}){
     </div>
   );
 }
+
 function MockBrowserWeb({c1,c2}){
+  const rgb1=hexToRgb(c1);
   return(
     <div className="m-browser">
       <div className="b-win">
         <div className="b-bar">
           <div className="bd bd-r"/><div className="bd bd-y"/><div className="bd bd-g"/>
-          <div className="b-url"><i className="fas fa-lock" style={{fontSize:'.42rem',marginRight:'3px'}}/>cyberindo.co.id</div>
+          <div className="b-url">
+            <i className="fas fa-lock" style={{fontSize:'.42rem',marginRight:'3px'}}/>
+            nameless235.github.io/M-Gym
+          </div>
         </div>
         <div className="b-body">
           <div className="b-nav">
             <div className="b-logo" style={{background:`linear-gradient(90deg,${c1},${c2})`,opacity:.9}}/>
-            <div className="b-lnks"><div className="b-lnk"/><div className="b-lnk"/><div className="b-lnk"/>
+            <div className="b-lnks">
+              <div className="b-lnk"/><div className="b-lnk"/><div className="b-lnk"/>
               <div style={{width:'28px',height:'12px',background:c1,borderRadius:'4px',opacity:.75}}/>
             </div>
           </div>
           <div className="b-hero" style={{background:`linear-gradient(135deg,${c1}25,${c2}12)`}}>
-            <div><div className="b-h1" style={{width:'75px',background:`rgba(${hexToRgb(c1)},.55)`}}/><div className="b-h2" style={{background:`rgba(${hexToRgb(c1)},.28)`}}/></div>
+            <div>
+              <div className="b-h1" style={{width:'75px',background:`rgba(${rgb1},.55)`}}/>
+              <div className="b-h2" style={{background:`rgba(${rgb1},.28)`}}/>
+            </div>
             <div style={{marginLeft:'auto',width:'36px',height:'16px',background:`${c1}90`,borderRadius:'5px'}}/>
           </div>
-          <div className="b-cards"><div className="b-card"/><div className="b-card"/><div className="b-card"/></div>
+          <div className="b-cards">
+            <div className="b-card"/><div className="b-card"/><div className="b-card"/>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
 function MockDesign({c1,c2}){
   return(
     <div className="m-design">
       <div className="ds-screen1">
-        <div className="ds-topbar">FINANCEME APP</div>
+        <div className="ds-topbar">JAGAIN.ID</div>
         <div className="ds-content">
           <div className="ds-card" style={{height:'58px',background:`linear-gradient(135deg,${c1}45,${c2}30)`,borderRadius:'6px',marginBottom:'4px',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'3px'}}>
             <div style={{height:'8px',width:'52px',background:'rgba(255,255,255,.55)',borderRadius:'3px'}}/>
@@ -834,7 +1011,7 @@ function MockDesign({c1,c2}){
         </div>
       </div>
       <div className="ds-screen2">
-        <div className="ds-topbar" style={{fontSize:'.38rem'}}>TRANSACTIONS</div>
+        <div className="ds-topbar" style={{fontSize:'.38rem'}}>CAREGIVER</div>
         <div className="ds-content" style={{padding:'5px'}}>
           {[c1,c2,c1].map((clr,i)=>(
             <div key={i} style={{height:'28px',background:i===0?`${clr}25`:'rgba(255,255,255,0.03)',borderRadius:'5px',marginBottom:'3px',border:`1px solid ${clr}${i===0?'30':'10'}`,display:'flex',alignItems:'center',padding:'0 5px',gap:'4px'}}>
@@ -848,6 +1025,7 @@ function MockDesign({c1,c2}){
     </div>
   );
 }
+
 function MockNetwork({c1,c2}){
   const nodes=[
     {x:'50%',y:'45%',big:true,clr:c1},
@@ -855,14 +1033,14 @@ function MockNetwork({c1,c2}){
     {x:'15%',y:'70%',big:false,clr:c1},{x:'50%',y:'80%',big:false,clr:c2},{x:'85%',y:'70%',big:false,clr:c1},
     {x:'35%',y:'25%',big:false,clr:c2},{x:'65%',y:'25%',big:false,clr:c1},
   ];
+  const labels=['Router','ISP','AP','Client','Client','Client'];
   return(
     <div className="m-network">
       <div style={{background:`linear-gradient(135deg,${c1}12,${c2}08,transparent)`,position:'absolute',inset:0}}/>
       <svg width="100%" height="100%" style={{position:'absolute',inset:0,overflow:'visible'}}>
         {nodes.slice(1).map((n,i)=>(
           <line key={i} x1="50%" y1="45%" x2={n.x} y2={n.y}
-            stroke={n.clr} strokeWidth="1" opacity=".35"
-            strokeDasharray="4 3"/>
+            stroke={n.clr} strokeWidth="1" opacity=".35" strokeDasharray="4 3"/>
         ))}
         <line x1="20%" y1="20%" x2="35%" y2="25%" stroke={c2} strokeWidth="1" opacity=".25" strokeDasharray="3 3"/>
         <line x1="80%" y1="20%" x2="65%" y2="25%" stroke={c2} strokeWidth="1" opacity=".25" strokeDasharray="3 3"/>
@@ -872,17 +1050,15 @@ function MockNetwork({c1,c2}){
       {nodes.map((n,i)=>(
         <div key={i} style={{
           position:'absolute',left:n.x,top:n.y,transform:'translate(-50%,-50%)',
-          width:n.big?18:10,height:n.big?18:10,
-          borderRadius:'50%',background:n.clr,
-          boxShadow:`0 0 ${n.big?20:10}px ${n.clr}`,
-          border:`1.5px solid ${n.clr}60`,
-          zIndex:2,
+          width:n.big?18:10,height:n.big?18:10,borderRadius:'50%',
+          background:n.clr,boxShadow:`0 0 ${n.big?20:10}px ${n.clr}`,
+          border:`1.5px solid ${n.clr}60`,zIndex:2,
         }}/>
       ))}
       <div style={{position:'absolute',top:'12px',left:'50%',transform:'translateX(-50%)',background:'rgba(0,0,0,.45)',border:`1px solid ${c1}40`,borderRadius:'6px',padding:'3px 8px',backdropFilter:'blur(8px)'}}>
         <span style={{fontFamily:'var(--mono)',fontSize:'.55rem',color:c1}}>NETWORK TOPOLOGY</span>
       </div>
-      {['Router','ISP','AP','Client','Client','Client'].map((l,i)=>(
+      {labels.map((l,i)=>(
         <div key={i} style={{position:'absolute',left:nodes[i]?.x,top:`calc(${nodes[i]?.y} + 14px)`,transform:'translateX(-50%)',fontSize:'.48rem',color:'rgba(255,255,255,.35)',fontFamily:'var(--mono)',whiteSpace:'nowrap'}}>
           {l}
         </div>
@@ -891,15 +1067,10 @@ function MockNetwork({c1,c2}){
   );
 }
 
-function hexToRgb(hex){
-  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
-  return`${r},${g},${b}`;
-}
-
 function ProjThumb({p}){
-  const bg=`linear-gradient(135deg,${p.c1}18,${p.c2}10,var(--bg3))`;
+  const thumbStyle={position:'relative',height:'100%',background:`linear-gradient(135deg,${p.c1}18,${p.c2}10,var(--bg3))`};
   return(
-    <div style={{position:'relative',height:'100%',background:bg}}>
+    <div style={thumbStyle}>
       {p.mock==='video'&&<MockVideo c1={p.c1} c2={p.c2}/>}
       {p.mock==='phone'&&<MockPhone c1={p.c1} c2={p.c2}/>}
       {p.mock==='browser-copy'&&<MockBrowserCopy c1={p.c1} c2={p.c2}/>}
@@ -909,7 +1080,6 @@ function ProjThumb({p}){
     </div>
   );
 }
-
 
 /* ══ PROJECTS ═══════════════════════════════════════════════════ */
 function Projects(){
@@ -924,7 +1094,7 @@ function Projects(){
           <h2 className="sec-ttl">Featured <span className="hl">Projects</span></h2>
         </div>
         <div className="f-tabs">
-          {[['all','All Work'],['video','🎬 Video'],['social','📱 Social'],['copy','✍️ Copy'],['web','🌐 Web'],['design','🎨 Design'],['network','🔧 Network']].map(([k,lbl])=>(
+          {[['all','All Work'],['web','🌐 Web'],['design','🎨 Design'],['social','📱 Social'],['network','🔧 Network']].map(([k,lbl])=>(
             <button key={k} className={`ftab${f===k?' on':''}`} onClick={()=>setF(k)}>{lbl}</button>
           ))}
         </div>
@@ -935,8 +1105,12 @@ function Projects(){
             <div className="proj-thumb">
               <ProjThumb p={p}/>
               <div className="proj-ov">
-                <a href={p.href} target="_blank" rel="noopener noreferrer" className="ov-btn"><i className="fas fa-external-link-alt"/></a>
-                <a href="#contact" className="ov-btn"><i className="fas fa-paper-plane"/></a>
+                <a href={p.href} target="_blank" rel="noopener noreferrer" className="ov-btn">
+                  <i className="fas fa-external-link-alt"/>
+                </a>
+                <a href="#contact" className="ov-btn">
+                  <i className="fas fa-paper-plane"/>
+                </a>
               </div>
             </div>
             <div className="proj-body">
@@ -996,12 +1170,16 @@ function TechStack(){
       </div>
       <div className="mq-outer">
         <div className="mq-track">
-          {doubled.map((t,i)=>{const[ico,...rest]=t.split(' ');return(
-            <div key={i} className="tp">
-              <span className="tp-ico">{ico}</span>
-              <span className="tp-nm">{rest.join(' ')}</span>
-            </div>
-          );
+          {doubled.map((t,i)=>{
+            const spaceIdx=t.indexOf(' ');
+            const ico=t.slice(0,spaceIdx);
+            const nm=t.slice(spaceIdx+1);
+            return(
+              <div key={i} className="tp">
+                <span className="tp-ico">{ico}</span>
+                <span className="tp-nm">{nm}</span>
+              </div>
+            );
           })}
         </div>
       </div>
@@ -1038,13 +1216,20 @@ function Contact(){
   const ref=useRef(null),vis=useVisible(ref);
   const[form,setForm]=useState({name:'',email:'',subject:'',msg:''});
   const[sent,setSent]=useState(false);
-  const sub=e=>{e.preventDefault();setSent(true);setForm({name:'',email:'',subject:'',msg:''});setTimeout(()=>setSent(false),4500);};
+  const sub=e=>{
+    e.preventDefault();
+    setSent(true);
+    setForm({name:'',email:'',subject:'',msg:''});
+    setTimeout(()=>setSent(false),4500);
+  };
   return(
     <section className="sec" id="contact" ref={ref}>
       <div className={`fi${vis?' v':''}`}>
         <span className="sec-lbl">Let's Connect</span>
         <h2 className="sec-ttl">Let's Work <span className="hl">Together</span></h2>
-        <p className="sec-desc">Open for internships, freelance projects, and collaborations in UI/UX, content, and web development.</p>
+        <p className="sec-desc">
+          Open untuk internship, freelance project, dan kolaborasi di bidang UI/UX, web development, dan content creation.
+        </p>
       </div>
       <div className="ct-g">
         <div className={`fi${vis?' v':''}`} style={{transitionDelay:'.2s'}}>
@@ -1054,30 +1239,57 @@ function Contact(){
               {ico:'fa-envelope',lbl:'Email',val:'adaamputra423@gmail.com',href:'mailto:adaamputra423@gmail.com'},
               {ico:'fa-phone',lbl:'Phone / WhatsApp',val:'+62 858-9458-6023',href:'tel:+6285894586023'},
               {ico:'fa-linkedin',lbl:'LinkedIn',val:'in/muhammad-adam',href:'https://linkedin.com/in/muhammad-adam-549427314/'},
-              {ico:'fa-map-marker-alt',lbl:'Location',val:'Bogor, Indonesia — Remote OK',href:'#'},
+              {ico:'fa-map-marker-alt',lbl:'Location',val:'Bekasi, West Java — Remote OK',href:'#'},
             ].map(c=>(
-              <a key={c.lbl} href={c.href} className="ct-link" target={c.href.startsWith('http')?'_blank':undefined} rel="noopener noreferrer">
+              <a key={c.lbl} href={c.href} className="ct-link"
+                target={c.href.startsWith('http')?'_blank':undefined}
+                rel="noopener noreferrer">
                 <div className="ct-ico"><i className={`fas ${c.ico}`}/></div>
-                <div><div className="ct-label">{c.lbl}</div><div className="ct-val">{c.val}</div></div>
+                <div>
+                  <div className="ct-label">{c.lbl}</div>
+                  <div className="ct-val">{c.val}</div>
+                </div>
               </a>
             ))}
             <div className="avail-bar">
               <div className="avail-d"/>
-              <div className="avail-t">Currently available for new projects & internship opportunities</div>
+              <div className="avail-t">Tersedia untuk project baru & peluang magang</div>
             </div>
           </div>
         </div>
         <div className={`fi${vis?' v':''}`} style={{transitionDelay:'.4s'}}>
           <form className="ct-form" onSubmit={sub}>
             <div className="f-row">
-              <div className="fg"><label className="flbl">Name</label><input className="finp" type="text" placeholder="Your full name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})} required/></div>
-              <div className="fg"><label className="flbl">Email</label><input className="finp" type="email" placeholder="your@email.com" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} required/></div>
+              <div className="fg">
+                <label className="flbl">Name</label>
+                <input className="finp" type="text" placeholder="Your full name"
+                  value={form.name} onChange={e=>setForm({...form,name:e.target.value})} required/>
+              </div>
+              <div className="fg">
+                <label className="flbl">Email</label>
+                <input className="finp" type="email" placeholder="your@email.com"
+                  value={form.email} onChange={e=>setForm({...form,email:e.target.value})} required/>
+              </div>
             </div>
-            <div className="fg"><label className="flbl">Subject</label><input className="finp" type="text" placeholder="What can I help with?" value={form.subject} onChange={e=>setForm({...form,subject:e.target.value})} required/></div>
-            <div className="fg"><label className="flbl">Message</label><textarea className="finp" rows={5} placeholder="Tell me about your project, timeline, and budget..." value={form.msg} onChange={e=>setForm({...form,msg:e.target.value})} required/></div>
+            <div className="fg">
+              <label className="flbl">Subject</label>
+              <input className="finp" type="text" placeholder="What can I help with?"
+                value={form.subject} onChange={e=>setForm({...form,subject:e.target.value})} required/>
+            </div>
+            <div className="fg">
+              <label className="flbl">Message</label>
+              <textarea className="finp" rows={5}
+                placeholder="Ceritakan kebutuhan project, timeline, dan budget..."
+                value={form.msg} onChange={e=>setForm({...form,msg:e.target.value})} required/>
+            </div>
             {sent
-              ?<div className="sent"><i className="fas fa-check-circle" style={{color:'var(--emerald)'}}/>Message sent! I'll reply within 24 hours 🚀</div>
-              :<button type="submit" className="btn-p" style={{border:'none',width:'fit-content'}}><i className="fas fa-paper-plane"/>Send Message</button>
+              ?<div className="sent">
+                <i className="fas fa-check-circle" style={{color:'var(--emerald)'}}/>
+                Message sent! Gue akan balas dalam 24 jam 🚀
+              </div>
+              :<button type="submit" className="btn-p" style={{border:'none',width:'fit-content'}}>
+                <i className="fas fa-paper-plane"/>Send Message
+              </button>
             }
           </form>
         </div>
@@ -1099,8 +1311,8 @@ function Footer(){
         {[
           {i:'fa-envelope',h:'mailto:adaamputra423@gmail.com'},
           {i:'fa-linkedin-in',h:'https://linkedin.com/in/muhammad-adam-549427314/'},
-          {i:'fa-tiktok',h:'https://tiktok.com/@reijikurohaku'},
           {i:'fa-github',h:'https://github.com/nameless235'},
+          {i:'fa-tiktok',h:'#'},
         ].map(s=>(
           <a key={s.i} href={s.h} className="soc" target="_blank" rel="noopener noreferrer">
             <i className={`fab ${s.i}`}/>
@@ -1116,8 +1328,11 @@ function App(){
   const[active,setActive]=useState('home');
   useEffect(()=>{
     const secs=document.querySelectorAll('section[id],div[id]');
-    const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setActive(e.target.id);}),{threshold:.35});
-    secs.forEach(s=>o.observe(s));return()=>o.disconnect();
+    const o=new IntersectionObserver(es=>es.forEach(e=>{
+      if(e.isIntersecting)setActive(e.target.id);
+    }),{threshold:.35});
+    secs.forEach(s=>o.observe(s));
+    return()=>o.disconnect();
   },[]);
   return(
     <>
@@ -1146,6 +1361,7 @@ function App(){
     </>
   );
 }
+
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
 </body>
